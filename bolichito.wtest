@@ -1,0 +1,309 @@
+import objetos.*
+import personas.*
+import bolichito.*
+
+
+/*####################################################*/
+/*TEST COLORES*/
+/*####################################################*/
+describe " Test de colores"{
+    test "Verifica que el color rojo es Fuerte" {
+        assert.that(rojo.esFuerte())
+    }
+
+    test "Verifica que el color verde es Fuerte" {
+        assert.that(verde.esFuerte())
+    }
+
+    test "Verifica que el color celeste no es Fuerte" {
+        assert.notThat(celeste.esFuerte())
+    }
+
+    test "Verifica que el color pardo no es Fuerte" {
+        assert.notThat(celeste.esFuerte())
+    }
+
+    test "Verifica que el color naranja es Fuerte" {
+        assert.that(naranja.esFuerte())
+    }
+}
+/*####################################################*/
+/*TEST MATERIALES*/
+/*####################################################*/
+describe "Test de materiales"{
+    test "Verifica si el cobre brilla" {
+      assert.that(cobre.brilla())
+    }
+
+    test "Verifica si el vidrio brilla" {
+      assert.that(vidrio.brilla())
+    }
+
+    test "Verifica si el lino no brilla" {
+      assert.notThat(lino.brilla())
+    }
+
+    test "Verifica si el cuero no brilla" {
+      assert.notThat(cuero.brilla())
+    }
+
+    test "Verifica si el madera no brilla" {
+      assert.notThat(madera.brilla())
+    }
+}
+
+/*####################################################*/
+/*TEST ARTICULOS*/
+/*####################################################*/
+describe "Test de la remera"{
+    test "Verificar el color rojo de la remera"{
+        assert.that(remera.color() == rojo)
+    }
+
+    test "Verificar el peso de la remera es 800"{
+        assert.that(remera.peso() == 800)
+    }
+
+    test "Verificar que la remera es de lino"{
+        assert.that(remera.material() == lino)
+    }
+}
+
+describe "Test de la pelota"{
+    test "Verificar el color pardo de la pelota"{
+        assert.that(pelota.color() == pardo)
+    }
+
+    test "Verificar el peso de la pelota es 1300"{
+        assert.that(pelota.peso() == 1300)
+    }
+
+    test "Verificar que la pelota es de cuero"{
+        assert.that(pelota.material() == cuero)
+    }
+}
+
+describe "Test de la biblioteca"{
+    test "Verificar el color verde de la biblioteca"{
+        assert.that(biblioteca.color() == verde)
+    }
+
+    test "Verificar el peso de la biblioteca es 8000"{
+        assert.that(biblioteca.peso() == 8000)
+    }
+
+    test "Verificar que la biblioteca es de madera"{
+        assert.that(biblioteca.material() == madera)
+    }
+}
+
+describe "Test de el munieco"{
+    test "Verificar el color celeste del munieco"{
+        assert.that(munieco.color() == celeste)
+    }
+
+    test "Verificar el peso del munieco es 1000"{
+        munieco.modificarPeso(1000)
+        assert.that(munieco.peso() == 1000)
+    }
+
+    test "Verificar que el munieco es de vidrio"{
+        assert.that(munieco.material() == vidrio)
+    }
+}
+
+describe "Test de la placa"{
+    test "Verificar el color variable de la placa"{
+        assert.that(placa.color() == celeste)
+        placa.modificarColor(rojo)
+        assert.that(placa.color() == rojo)
+    }
+
+    test "Verificar el peso variable de la placa"{
+        assert.that(placa.peso() == 0)
+        placa.modificarPeso(1000)
+        assert.that(placa.peso() == 1000)
+    }
+
+    test "Verificar que la placao es de cobre"{
+        assert.that(placa.material() == cobre)
+    }
+}
+
+describe "Test del arito"{
+    test "Verificar el color celeste del arito"{
+        assert.that(arito.color() == celeste)
+    }
+
+    test "Verificar el peso del arito es 180"{
+        assert.that(arito.peso() == 180)
+    }
+
+    test "Verificar que el arito es de cobre"{
+        assert.that(arito.material() == cobre)
+    }
+}
+
+describe "Test del banquito"{
+    test "Verificar el color variable del banquito"{
+        assert.that(banquito.color() == naranja)
+        banquito.modificarColor(celeste)
+        assert.that(banquito.color() == celeste)
+    }
+
+    test "Verificar el peso del banquito es 1700"{
+        assert.that(banquito.peso() == 1700)
+    }
+
+    test "Verificar que el banquito es de madera"{
+        assert.that(banquito.material() == madera)
+    }
+}
+
+describe "Test del cajita"{
+    test "Verificar el color de la cajita"{
+        assert.that(cajita.color() == rojo)
+    }
+    
+    test "Verificar que la cajita es de cobre"{
+        assert.that(cajita.material() == cobre)
+    }
+
+    test "Verificar la cajita tiene el arito adentro"{
+        cajita.modificarContenido(arito)
+        assert.that(cajita.queContieneCajita() == arito)
+    }
+
+    test "Verificar el peso de la cajita con arito dentro"{
+        cajita.modificarContenido(arito)
+        assert.that(cajita.peso() == 580)
+    }
+}
+
+/*####################################################*/
+/*TEST PERSONAS*/
+/*####################################################*/
+
+describe "Los gustos de Rosa"{
+    test "A Rosa le gusta la pelota"{
+        assert.that(rosa.leGusta(pelota) == true)
+    }
+    test "A Rosa le gusta la remera"{
+        assert.that(rosa.leGusta(remera) == true)
+    }
+    test "A Rosa le gusta el muñeco"{
+        assert.that(rosa.leGusta(munieco) == true)
+    }
+    test "A Rosa no le gusta la biblioteca"{
+        assert.that(rosa.leGusta(biblioteca) == false)
+    }
+    test "A Rosa no le gusta la placa"{
+        placa.modificarPeso(3500)
+        assert.that(rosa.leGusta(placa) == false)
+    }
+}
+
+describe "Los gustos de Estefania"{
+    test "A Estefania le gusta la placa roja"{
+        placa.modificarColor(rojo)
+        assert.that(estefania.leGusta(placa) == true)
+    }
+    test "A Estefania le gusta la biblioteca"{
+        assert.that(estefania.leGusta(biblioteca) == true)
+    }
+    test "A Estefania no le gusta una pelota parda de cuero"{
+        assert.that(estefania.leGusta(pelota) == false)
+    }
+    test "A Estefania no le gusta el munieco de vidrio"{
+        assert.that(estefania.leGusta(munieco) == false)
+    }
+}
+
+describe "Los gustos de Luisa"{
+    test "A Luisa le gusta la placa roja"{
+        assert.that(luisa.leGusta(placa) == true)
+    }
+    test "A Luisa le gusta el munieco de vidrio"{
+        assert.that(luisa.leGusta(munieco) == true)
+    }
+    test "A Luisa no le gusta una pelota"{
+        assert.that(luisa.leGusta(pelota) == false)
+    }
+    test "A Luisa no le gusta la remera"{
+        assert.that(luisa.leGusta(remera) == false)
+    }
+}
+
+describe "Los gustos de Juan"{
+    test "A Juan le gusta la placa roja"{
+        placa.modificarPeso(1500)
+        assert.that(juan.leGusta(placa) == true)
+    }
+    test "A Juan le gusta el munieco de vidrio"{
+        assert.that(juan.leGusta(munieco) == true)
+    }
+    test "A Juan le gusta una pelota"{
+        assert.that(juan.leGusta(pelota) == true)
+    }
+    test "A Juan no le gusta la remera"{
+        assert.that(juan.leGusta(remera) == false)
+    }
+    test "A Juan no le gusta la biblioteca"{
+        assert.that(juan.leGusta(biblioteca) == false)
+    }
+}
+
+/*####################################################*/
+/*TEST BOLICHITO*/
+/*####################################################*/
+
+describe "Funciones de bolichito" {
+  test "Verifica si el bolichito es brillante" {
+    bolichito.cambiarObjetoEnMostrador(munieco)
+    bolichito.cambiarObjetoEnVidriera(placa)
+
+    assert.that(bolichito.esBrillante())
+  }
+
+  test "Verifica si el bolichito es monocromatico" {
+    bolichito.cambiarObjetoEnMostrador(pelota)
+    bolichito.cambiarObjetoEnVidriera(pelota)
+
+    assert.that(bolichito.esMonocromatico())    
+  }
+
+  test "Verifica si el bolichito esta equilibrado" {
+    bolichito.cambiarObjetoEnMostrador(biblioteca)
+    bolichito.cambiarObjetoEnVidriera(pelota)
+
+    assert.that(bolichito.estaEquilibrado())
+
+    bolichito.cambiarObjetoEnMostrador(pelota)
+    bolichito.cambiarObjetoEnVidriera(biblioteca)
+
+    assert.notThat(bolichito.estaEquilibrado())
+  }
+
+  test "Verifica que el bolichito tenga un objeto de un color determinado"{
+    bolichito.cambiarObjetoEnMostrador(biblioteca)
+    bolichito.cambiarObjetoEnVidriera(pelota)
+
+    assert.that(bolichito.tenesArticuloDeColor(verde))
+  }
+
+  test "Verifica si el bolichito puede mejorar o no"{
+    bolichito.cambiarObjetoEnMostrador(pelota)
+    bolichito.cambiarObjetoEnVidriera(biblioteca)
+
+    assert.that(bolichito.puedeMejorar())
+  }
+
+test "Verifica si el bolichito le puede ofrecer un articulo a una persona"{
+    bolichito.cambiarObjetoEnMostrador(pelota)
+    bolichito.cambiarObjetoEnVidriera(biblioteca)
+
+    assert.that(bolichito.puedeOfrecerleAlgoA(rosa))
+    assert.notThat(bolichito.puedeOfrecerleAlgoA(luisa))
+  }
+
+}
